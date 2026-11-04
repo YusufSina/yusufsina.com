@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 import { getAllProjects } from "./getProjects";
 import WorkClient from "./WorkClient";
 
 const PROJECTS_PER_PAGE = 5;
+
+export const metadata: Metadata = {
+  title: "Work",
+  description: "Projects I've built and worked on.",
+  alternates: { canonical: "/work/" },
+  openGraph: { title: "Work", description: "Projects I've built and worked on.", url: "/work/", images: [DEFAULT_OG_IMAGE] },
+};
 
 export default async function Work() {
   const allProjects = await getAllProjects();

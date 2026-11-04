@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 import { getAllPosts } from "./getPosts";
 import BlogClient from "./BlogClient";
 
 const POSTS_PER_PAGE = 5;
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Articles and thoughts on engineering, finance, and product.",
+  alternates: { canonical: "/blog/" },
+  openGraph: { title: "Blog", description: "Articles and thoughts on engineering, finance, and product.", url: "/blog/", images: [DEFAULT_OG_IMAGE] },
+};
 
 export default async function Blog() {
   const allPosts = await getAllPosts();
