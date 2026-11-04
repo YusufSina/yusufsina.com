@@ -8,6 +8,29 @@
 
 export type SocialPlatform = "x" | "linkedin" | "github" | "website";
 
+/**
+ * Visitor statistics. Pick one provider, or "none" to send nothing.
+ * Each provider shows its numbers in its own dashboard; see "Analytics" in readme.md.
+ * The script only loads on the domain in `url` below (with or without "www."),
+ * so a copy published elsewhere without changing this file sends nothing.
+ */
+export type AnalyticsConfig =
+  | { provider: "none" }
+  /** GoatCounter: `code` is the part before .goatcounter.com, e.g. "ada" for ada.goatcounter.com. */
+  | { provider: "goatcounter"; code: string }
+  /** Cloudflare Web Analytics: the token from the JS snippet Cloudflare gives you. */
+  | { provider: "cloudflare"; token: string }
+  /** Umami: the website ID. Set `src` only if you host Umami yourself. */
+  | { provider: "umami"; websiteId: string; src?: string }
+  /**
+   * Plausible: `src` is the script URL from your Plausible site settings
+   * (e.g. "https://plausible.io/js/pa-XXXX.js"). Older setups that use
+   * "https://plausible.io/js/script.js" also need `domain`, e.g. "ada.dev".
+   */
+  | { provider: "plausible"; src: string; domain?: string }
+  /** Google Analytics 4: the measurement ID, e.g. "G-XXXXXXXXXX". It sets cookies, so you may need a consent banner. */
+  | { provider: "google"; measurementId: string };
+
 export type SiteConfig = {
   /** Full URL the site is served from, without a trailing slash. */
   url: string;
@@ -39,6 +62,8 @@ export type SiteConfig = {
   /** Shown under the heading of the Blog and Work pages, and used as their meta description. */
   blog: { description: string };
   work: { description: string };
+  /** Visitor statistics. Set `{ provider: "none" }` to turn them off. */
+  analytics: AnalyticsConfig;
 };
 
 const siteConfig: SiteConfig = {
@@ -68,6 +93,7 @@ const siteConfig: SiteConfig = {
   sourceUrl: "https://github.com/YusufSina/yusufsina.com",
   blog: { description: "Articles and thoughts on engineering, finance, and product." },
   work: { description: "Projects I've built and worked on." },
+  analytics: { provider: "goatcounter", code: "yusufsina" },
 };
 
 export default siteConfig;

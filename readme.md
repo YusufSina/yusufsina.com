@@ -66,6 +66,22 @@ Generated at build time from `site.config.ts`:
 - `/rss.xml` blog feed
 - `/icon.png` and `/apple-icon.png`
 
+## Analytics
+
+Visitor statistics are off unless you set `analytics` in `site.config.ts`. Supported providers:
+
+| Provider | Config | Cost / cookies |
+|---|---|---|
+| [GoatCounter](https://www.goatcounter.com) | `{ provider: "goatcounter", code: "ada" }` for `ada.goatcounter.com` | Free for personal sites, no cookies |
+| [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) | `{ provider: "cloudflare", token: "…" }` | Free, no cookies |
+| [Umami](https://umami.is) | `{ provider: "umami", websiteId: "…" }` (add `src` if self-hosted) | Free tier, no cookies |
+| [Plausible](https://plausible.io) | `{ provider: "plausible", src: "https://plausible.io/js/pa-….js" }` | Paid, no cookies |
+| [Google Analytics](https://analytics.google.com) | `{ provider: "google", measurementId: "G-…" }` | Free, sets cookies (you may need a consent banner) |
+
+The numbers are in the provider's own dashboard. Page views from client-side navigation (clicking between pages) are counted too. The script only loads when the page is served from the domain in `url` (with or without `www.`), so local development and copies published on another domain don't send anything.
+
+Using this repo as a template? Change `analytics` to your own ID or to `{ provider: "none" }`, or your visits will be counted on the original owner's dashboard.
+
 ## Deployment
 
 See [DEPLOYMENT.md](DEPLOYMENT.md).
