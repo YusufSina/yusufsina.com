@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DEFAULT_OG_IMAGE, firstImage, toDate } from "@/lib/site";
 import { getAllProjects, getProjectBySlug } from "../getProjects";
+import ProjectMeta from "../ProjectMeta";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const projects = await getAllProjects();
@@ -70,7 +71,13 @@ export default async function ProjectPage({
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
             {project.title}
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">{project.date}</p>
+          <ProjectMeta
+            year={project.year}
+            role={project.role}
+            status={project.status}
+            stack={project.stack}
+            className="mb-8"
+          />
           {project.link && (
             <div className="mb-8">
               <a

@@ -1,57 +1,35 @@
 ---
 id: 3
 title: Pas
-date: "2026-01-01"
-excerpt: "A payment application built on Avalanche blockchain for university campus use. Enables peer-to-peer token transfers, developed as a final year university project."
+date: "2021-06-01"
+year: 2021
+role: "Developer"
+status: "University project · Archived"
+stack: ["React Native", ".NET", "Avalanche"]
+excerpt: "A mobile payment app for university campuses, letting students and staff send tokens to each other on the Avalanche network. My final-year university project."
 slug: pas
-link: ""
 ---
 
-![Pas Application Screenshot 1](/images/pas/pas0.png)
+![Pas mobile app screens](/images/pas/pas0.png)
 
-## Overview
+## The idea
 
-Pas is a blockchain-based payment application developed on the Avalanche network. Created as a final year university project, Pas enables users to send and receive token funds directly to each other, with a vision to be used within university campuses for seamless peer-to-peer transactions.
+On a university campus, money moves in small amounts all the time: splitting a lunch bill, paying for printing, chipping in for a club event. **Pas** was my attempt to make those payments instant and cheap by moving them onto a blockchain.
 
-![Pas Application Screenshot 2](/images/pas/pas1.png)
+Pas is a mobile app that lets students and staff send and receive tokens directly to each other on the **Avalanche** network. I built it in 2021 as my final-year university project.
 
-## Key Features
+![Pas app screens](/images/pas/pas1.png)
 
-### Peer-to-Peer Payments
-- Direct token transfers between users
-- Fast and secure transactions on Avalanche blockchain
-- Simple and intuitive user interface
+## What it does
 
-### Avalanche Blockchain Integration
-- Built on Avalanche network for high throughput and low fees
-- Secure and transparent transaction records
-- Real-time transaction processing
+- **Peer-to-peer transfers.** Send tokens to another user directly from your phone.
+- **Fast, low-fee transactions.** Avalanche was chosen for its quick finality and low fees, which matter when most payments are small.
+- **Built for a campus.** The flows and wording assume a closed community of students and staff rather than the general public.
 
-### Campus-Focused Design
-- Designed with university campus use in mind
-- Enables students and staff to transfer funds easily
-- Practical solution for campus financial transactions
+![Pas app screens](/images/pas/pas3.png)
 
-![Pas Application Screenshot 3](/images/pas/pas3.png)
+![Pas app screens](/images/pas/pas5.png)
 
-## Project Context
+## Looking back
 
-Pas was developed as a final year university project, demonstrating practical application of blockchain technology in real-world scenarios. The project showcases how blockchain can be leveraged to create efficient payment solutions for specific communities like university campuses.
-
-![Pas Application Screenshot 4](/images/pas/pas5.png)
-
-## Technical Implementation
-
-The application leverages the Avalanche blockchain's capabilities to provide:
-- Fast transaction processing
-- Low transaction fees
-- Secure and immutable transaction records
-- User-friendly interface for token transfers
-
-## Technology Stack
-
-- **Blockchain**: Avalanche Network
-- **Smart Contracts**: Token transfer functionality
-- **Frontend**: Web application interface
-- **Purpose**: University campus payment solution
-
+Pas brought together a mobile app, an API and a blockchain integration in one product. The project was built for my degree and is now archived. Its source code is not public.

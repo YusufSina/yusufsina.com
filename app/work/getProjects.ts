@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
+import { firstImage } from '@/lib/site';
 
 export interface Project {
   id: number;
@@ -11,6 +12,11 @@ export interface Project {
   content?: string;
   contentHtml?: string;
   link?: string;
+  year?: string;
+  role?: string;
+  status?: string;
+  stack?: string[];
+  cover?: string;
 }
 
 interface MatterData {
@@ -20,11 +26,27 @@ interface MatterData {
   excerpt: string;
   slug?: string;
   link?: string;
+  year?: string | number;
+  role?: string;
+  status?: string;
+  stack?: string[];
+  cover?: string;
   [key: string]: unknown;
 }
 
 // Get projects directory - works in both dev and production
 const projectsDirectory = join(process.cwd(), 'app', 'work', 'projects');
+
+function projectFields(data: MatterData, content: string) {
+  return {
+    link: data.link || undefined,
+    year: data.year !== undefined ? String(data.year) : undefined,
+    role: data.role,
+    status: data.status,
+    stack: Array.isArray(data.stack) ? data.stack : [],
+    cover: data.cover || firstImage(content),
+  };
+}
 
 export async function getAllProjects(): Promise<Project[]> {
   try {
@@ -50,7 +72,7 @@ export async function getAllProjects(): Promise<Project[]> {
             date: data.date,
             excerpt: data.excerpt,
             slug: data.slug || file.replace('.md', ''),
-            link: data.link,
+            ...projectFields(data, content),
             content: content.trim(),
           } as Project;
         } catch (error) {
@@ -95,7 +117,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       date: data.date,
       excerpt: data.excerpt,
       slug: data.slug || slug,
-      link: data.link,
+      ...projectFields(data, content),
       content: content.trim(),
       contentHtml: contentHtml,
     } as Project;
