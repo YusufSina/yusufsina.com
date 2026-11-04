@@ -33,7 +33,7 @@ The repo ships with [Claude Code](https://claude.com/claude-code) skills in `.cl
 4. Delete the posts in `app/blog/posts/` and the projects in `app/work/projects/`, then add your own (format below). Remove the images under `public/images/` that belonged to them.
 5. Set up deployment: see [DEPLOYMENT.md](DEPLOYMENT.md). Until the FTP secrets are set, the workflow only builds and skips the upload.
 
-The favicon is generated at build time from the initials of `name` (`Ada Lovelace` → `AL`). Set `icon.text` in the config to use other letters. The "Source" button in the bottom-right corner links to `sourceUrl`; point it at your repo or set it to `""` to hide it.
+The favicon is generated at build time from the initials of `name` (`Ada Lovelace` → `AL`). Set `icon.text` in the config to use other letters. The "Source" button in the bottom-right corner of the home page links to `sourceUrl`; point it at your repo or set it to `""` to hide it.
 
 ## Content
 

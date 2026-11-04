@@ -22,7 +22,7 @@ Ask for:
 - **Email** for the contact icon (optional), and the subject/body to prefill.
 - **Language:** the HTML `lang` (e.g. `en`, `tr`) and Open Graph locale (e.g. `en_US`, `tr_TR`). The UI text in the components is English; mention this if they pick another language.
 - **Favicon** (optional): different letters, background and text colours.
-- **Source button:** the small "Source" button in the bottom-right corner. Options: point it at their own repo, keep it pointing at the original template (`https://github.com/YusufSina/yusufsina.com`) as a credit, or hide it (empty string).
+- **Source button:** the small "Source" button in the bottom-right corner of the home page. Options: point it at their own repo, keep it pointing at the original template (`https://github.com/YusufSina/yusufsina.com`) as a credit, or hide it (empty string).
 - **Starting content:** do they want to write a first post and add their first project now, or start with one placeholder of each?
 - **Hosting:** cPanel/FTP (what the repo deploys to now), or another static host (Netlify, Cloudflare Pages, Vercel, GitHub Pages).
 

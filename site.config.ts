@@ -32,7 +32,7 @@ export type SiteConfig = {
   /** Favicon: letters and colours. Letters default to the initials of `name`. */
   icon: { text?: string; background: string; color: string };
   /**
-   * GitHub repository linked from the small "Source" button in the bottom-right corner.
+   * GitHub repository linked from the small "Source" button in the bottom-right corner of the home page.
    * Leave empty to hide the button.
    */
   sourceUrl: string;

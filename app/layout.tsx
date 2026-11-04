@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import ThemeToggle from "./components/ThemeToggle";
-import SourceLink from "./components/SourceLink";
 import {
   SITE_URL,
   SITE_NAME,
@@ -62,7 +61,6 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeToggle />
         {children}
-        <SourceLink />
       </body>
     </html>
   );
