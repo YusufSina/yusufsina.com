@@ -31,6 +31,11 @@ export type SiteConfig = {
   email: { address: string; subject?: string; body?: string };
   /** Favicon: letters and colours. Letters default to the initials of `name`. */
   icon: { text?: string; background: string; color: string };
+  /**
+   * GitHub repository linked from the small "Source" button in the bottom-right corner.
+   * Leave empty to hide the button.
+   */
+  sourceUrl: string;
   /** Intro text for the list pages. */
   blog: { description: string };
   work: { description: string };
@@ -60,6 +65,7 @@ const siteConfig: SiteConfig = {
     body: "Hi Yusuf, I'm interested in talking to you about...",
   },
   icon: { background: "#111827", color: "#ffffff" },
+  sourceUrl: "https://github.com/YusufSina/yusufsina.com",
   blog: { description: "Articles and thoughts on engineering, finance, and product." },
   work: { description: "Projects I've built and worked on." },
 };

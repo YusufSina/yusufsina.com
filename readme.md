@@ -17,13 +17,23 @@ npm run preview   # serve ./out locally
 
 ## Make it yours
 
+### With Claude Code
+
+The repo ships with [Claude Code](https://claude.com/claude-code) skills in `.claude/skills/`. Clone your copy, open Claude Code in it and ask:
+
+- **"Set up this site for me"** (`setup-site`): asks for your name, bio, photo, links, domain and hosting, fills in `site.config.ts`, removes the original content, and checks the build.
+- **"Write a new blog post about …"** (`new-post`): creates the Markdown file with the right front matter and images.
+- **"Add my project … to the Work page"** (`new-project`): writes a project case study with its tags and cover image.
+
+### By hand
+
 1. Click **Use this template** on GitHub (or fork / clone the repo).
 2. Edit [`site.config.ts`](site.config.ts): name, bio, domain, social links, email and favicon colours. Every page reads from this file.
 3. Put your photo in `public/images/` and point `avatar` in the config at it.
 4. Delete the posts in `app/blog/posts/` and the projects in `app/work/projects/`, then add your own (format below). Remove the images under `public/images/` that belonged to them.
 5. Set up deployment: see [DEPLOYMENT.md](DEPLOYMENT.md). Until the FTP secrets are set, the workflow only builds and skips the upload.
 
-The favicon is generated at build time from the initials of `name` (`Ada Lovelace` → `AL`). Set `icon.text` in the config to use other letters.
+The favicon is generated at build time from the initials of `name` (`Ada Lovelace` → `AL`). Set `icon.text` in the config to use other letters. The "Source" button in the bottom-right corner links to `sourceUrl`; point it at your repo or set it to `""` to hide it.
 
 ## Content
 

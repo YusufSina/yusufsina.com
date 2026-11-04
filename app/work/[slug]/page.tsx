@@ -7,6 +7,9 @@ import ProjectMeta from "../ProjectMeta";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const projects = await getAllProjects();
+  // A static export needs at least one page per dynamic route. With no projects yet,
+  // render a single placeholder that shows the 404 page instead of failing the build.
+  if (projects.length === 0) return [{ slug: "_empty" }];
   return projects.map((project) => ({
     slug: project.slug,
   }));

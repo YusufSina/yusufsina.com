@@ -7,6 +7,9 @@ import { getAllPosts, getPostBySlug } from "../getPosts";
 // Generate static params for all blog posts
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = await getAllPosts();
+  // A static export needs at least one page per dynamic route. With no posts yet,
+  // render a single placeholder that shows the 404 page instead of failing the build.
+  if (posts.length === 0) return [{ slug: "_empty" }];
   return posts.map((post) => ({
     slug: post.slug,
   }));
