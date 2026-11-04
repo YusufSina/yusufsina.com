@@ -2,8 +2,9 @@
 
 import Script from "next/script";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { AnalyticsConfig } from "@/site.config";
+import { isSiteHost } from "@/lib/site";
 
 declare global {
   interface Window {
@@ -13,10 +14,18 @@ declare global {
 }
 
 /**
- * Loads the analytics script chosen in site.config.ts. Nothing is rendered
- * for `provider: "none"` or when the ID is left empty.
+ * Loads the analytics script chosen in site.config.ts. Nothing is loaded for
+ * `provider: "none"`, when the ID is left empty, or when the page is not
+ * served from the domain in `url` (local development, or a copy of this repo
+ * published elsewhere without changing the config).
  */
 export default function Analytics({ config }: { config: AnalyticsConfig }) {
+  // Checked after mount: the HTML is built ahead of time, so the hostname is
+  // only known in the browser.
+  const [onSiteHost, setOnSiteHost] = useState(false);
+  useEffect(() => setOnSiteHost(isSiteHost(window.location.hostname)), []);
+  if (!onSiteHost) return null;
+
   switch (config.provider) {
     case "goatcounter":
       return config.code ? <GoatCounter code={config.code} /> : null;

@@ -8,6 +8,20 @@ export const SITE_DESCRIPTION = siteConfig.description;
 export const TWITTER_HANDLE = siteConfig.twitterHandle || undefined;
 export const DEFAULT_OG_IMAGE = siteConfig.avatar;
 
+/**
+ * True when `hostname` is the domain from `url` in site.config.ts (with or
+ * without "www."). Copies of the site served from another domain, and
+ * localhost, don't match.
+ */
+export function isSiteHost(hostname: string): boolean {
+  const strip = (h: string) => h.toLowerCase().replace(/^www\./, "");
+  try {
+    return strip(hostname) === strip(new URL(SITE_URL).hostname);
+  } catch {
+    return false;
+  }
+}
+
 /** Letters shown in the favicon: `icon.text`, or the first letters of the first and last word of the name. */
 export function iconText(): string {
   if (siteConfig.icon.text) return siteConfig.icon.text;

@@ -11,6 +11,8 @@ export type SocialPlatform = "x" | "linkedin" | "github" | "website";
 /**
  * Visitor statistics. Pick one provider, or "none" to send nothing.
  * Each provider shows its numbers in its own dashboard; see "Analytics" in readme.md.
+ * The script only loads on the domain in `url` below (with or without "www."),
+ * so a copy published elsewhere without changing this file sends nothing.
  */
 export type AnalyticsConfig =
   | { provider: "none" }

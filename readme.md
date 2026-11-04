@@ -78,7 +78,7 @@ Visitor statistics are off unless you set `analytics` in `site.config.ts`. Suppo
 | [Plausible](https://plausible.io) | `{ provider: "plausible", src: "https://plausible.io/js/pa-….js" }` | Paid, no cookies |
 | [Google Analytics](https://analytics.google.com) | `{ provider: "google", measurementId: "G-…" }` | Free, sets cookies (you may need a consent banner) |
 
-The numbers are in the provider's own dashboard. Page views from client-side navigation (clicking between pages) are counted too.
+The numbers are in the provider's own dashboard. Page views from client-side navigation (clicking between pages) are counted too. The script only loads when the page is served from the domain in `url` (with or without `www.`), so local development and copies published on another domain don't send anything.
 
 Using this repo as a template? Change `analytics` to your own ID or to `{ provider: "none" }`, or your visits will be counted on the original owner's dashboard.
 
