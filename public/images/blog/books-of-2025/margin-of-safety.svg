@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="720" height="300" role="img" aria-label="Margin of safety: the gap between a business's intrinsic value and the price you pay" font-family="Poppins, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <rect width="720" height="300" rx="16" fill="#f8fafc"/>
+  <text x="360" y="42" fill="#111827" font-size="20" font-weight="700" text-anchor="middle">Margin of safety</text>
+  <text x="40" y="94" fill="#334155" font-size="14" font-weight="600">What the business is worth</text>
+  <rect x="40" y="104" width="620" height="38" rx="8" fill="#1e3a8a"/>
+  <text x="648" y="129" fill="#fff" font-size="14" font-weight="600" text-anchor="end">intrinsic value</text>
+  <text x="40" y="178" fill="#334155" font-size="14" font-weight="600">What you pay</text>
+  <rect x="40" y="188" width="390" height="38" rx="8" fill="#60a5fa"/>
+  <text x="418" y="213" fill="#0f172a" font-size="14" font-weight="600" text-anchor="end">price</text>
+  <rect x="430" y="188" width="230" height="38" rx="8" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="545" y="213" fill="#047857" font-size="14" font-weight="700" text-anchor="middle">margin of safety</text>
+  <text x="360" y="268" fill="#334155" font-size="14" text-anchor="middle">Pay well below value, so mistakes and bad luck don't wipe you out.</text>
+</svg>
