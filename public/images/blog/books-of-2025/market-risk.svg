@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" width="720" height="360" role="img" aria-label="Illustrative chart: the belief that prices always go up versus real markets with booms and deep drawdowns" font-family="Poppins, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <rect width="720" height="360" rx="16" fill="#f8fafc"/>
+  <text x="360" y="40" fill="#111827" font-size="20" font-weight="700" text-anchor="middle">What I believed vs. how markets behave</text>
+  <line x1="70" y1="300" x2="680" y2="300" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="70" y1="300" x2="70" y2="112" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="680" y="322" fill="#64748b" font-size="12" text-anchor="end">time</text>
+  <text x="60" y="120" fill="#64748b" font-size="12" text-anchor="end">price</text>
+  <line x1="70" y1="280" x2="680" y2="135" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 7"/>
+  <polyline points="70,290 97,278 123,262 150,244 176,219 203,194 229,228 256,256 282,268 309,259 335,237 362,209 388,182 415,154 441,129 468,182 494,216 521,244 547,250 574,231 600,203 627,175 653,147 680,135" fill="none" stroke="#9f1239" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="203" y1="194" x2="203" y2="268" stroke="#9f1239" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="203" y1="268" x2="282" y2="268" stroke="#9f1239" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <text x="242" y="288" fill="#9f1239" font-size="13" font-weight="600" text-anchor="middle">−77% drawdown</text>
+  <g font-size="13">
+    <line x1="96" y1="72" x2="126" y2="72" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 7"/>
+    <text x="134" y="77" fill="#475569">"Hold long enough and it always goes up"</text>
+    <line x1="96" y1="94" x2="126" y2="94" stroke="#9f1239" stroke-width="3"/>
+    <text x="134" y="99" fill="#475569">Reality: booms, crashes and years to recover</text>
+  </g>
+  <text x="680" y="344" fill="#94a3b8" font-size="11" text-anchor="end">Illustrative shape, not real market data</text>
+</svg>

@@ -13,6 +13,8 @@ The books I read were:
 - **Reminiscences of a Stock Operator**
 - **The Intelligent Investor**
 
+![The three books I read in 2025: Rich Dad Poor Dad, Reminiscences of a Stock Operator and The Intelligent Investor](/images/blog/books-of-2025/bookshelf.svg)
+
 Each of these books affected me in different ways, but some left a much deeper mark than others.
 
 ---
@@ -27,6 +29,8 @@ when it came to investing and saving, I was almost at a **negative level**, or c
 
 The most valuable concept the book introduced me to was **cash flow**.  
 I had never thought so clearly about the difference between income, expenses, assets, and liabilities.  
+![Cash flow diagram: assets put money in your pocket, liabilities take it out](/images/blog/books-of-2025/cash-flow.svg)
+
 This shift in perspective strongly triggered the entrepreneurial drive that had been inside me for a long time.
 
 ---
@@ -40,6 +44,8 @@ Before reading it, I had a simple belief:
 
 After finishing the book, I clearly understood that  
 **the risks in the stock market are much higher than I had imagined**, and that making an investment requires truly knowing what you are doing.
+
+![Illustrative chart comparing the belief that prices always go up with real markets that boom, crash and take years to recover](/images/blog/books-of-2025/market-risk.svg)
 
 The life story of the author, Jesse Livermore, is also striking in this regard.  
 His repeated cycles of massive success followed by total collapse highlight the psychological weight of speculation.  
@@ -55,6 +61,8 @@ Benjamin Graham’s approach once again showed me that
 **the risks in the stock market are much higher than they appear**, especially when decisions are driven by emotion rather than discipline.
 
 The book makes it very clear that investment decisions should be based on data, margins of safety, and long-term thinking — not intuition.
+
+![Margin of safety: the gap between what a business is worth and the price you pay](/images/blog/books-of-2025/margin-of-safety.svg)
 
 The historical data and examples shared throughout the book are extremely valuable.  
 Analyzing stock market movements from several decades ago is insightful, but also challenging to fully grasp.
