@@ -30,7 +30,7 @@ export default async function Blog() {
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
             Blog
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">Articles and thoughts</p>
+          <p className="text-gray-600 dark:text-gray-400">{siteConfig.blog.description}</p>
         </div>
 
         <BlogClient initialPosts={allPosts} postsPerPage={POSTS_PER_PAGE} />

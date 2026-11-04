@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
+import { EMPTY_SLUG, isMissing } from '@/lib/site';
 
 export interface BlogPost {
   id: number;
@@ -63,12 +64,14 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
   } catch (error) {
-    console.error('Error reading posts:', error);
+    // No posts folder yet (git doesn't keep empty folders): nothing to list.
+    if (!isMissing(error)) console.error('Error reading posts:', error);
     return [];
   }
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (slug === EMPTY_SLUG) return null;
   try {
     const filePath = join(postsDirectory, `${slug}.md`);
     const fileContents = await readFile(filePath, 'utf8');
@@ -97,7 +100,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       contentHtml: contentHtml,
     } as BlogPost;
   } catch (error) {
-    console.error('Error finding post:', error);
+    if (!isMissing(error)) console.error('Error finding post:', error);
     return null;
   }
 }

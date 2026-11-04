@@ -36,7 +36,7 @@ export type SiteConfig = {
    * Leave empty to hide the button.
    */
   sourceUrl: string;
-  /** Intro text for the list pages. */
+  /** Shown under the heading of the Blog and Work pages, and used as their meta description. */
   blog: { description: string };
   work: { description: string };
 };

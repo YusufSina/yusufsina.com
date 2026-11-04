@@ -5,7 +5,9 @@ description: Turn this repository into the user's own personal site. Use when so
 
 # Set up the site for a new owner
 
-This repo is Yusuf Sina Yildiz's personal site, published as a template. Your job is to replace his details and content with the user's, leave the code alone, and finish with a site that builds.
+This repo is someone's personal site, published as a template. Your job is to replace the current owner's details and content with the user's, leave the code alone, and finish with a site that builds.
+
+Before changing anything, note the current owner's `name`, `url`, `twitterHandle`, email address and social URLs from `site.config.ts`. You need them for the leftover check in step 7.
 
 Work through the steps in order. Ask the questions in step 1 in a single message, not one at a time, and say which ones are optional. Never invent facts about the user (job, projects, bio): if something is missing, ask or leave it out.
 
@@ -20,7 +22,12 @@ Ask for:
 - **Photo:** a path to an image file. Optional; without one, keep the layout and tell them the avatar is missing.
 - **Social links** (optional): X, LinkedIn, GitHub, personal website. Only these four have icons (`SocialPlatform` in `site.config.ts`).
 - **Email** for the contact icon (optional), and the subject/body to prefill.
-- **Language:** the HTML `lang` (e.g. `en`, `tr`) and Open Graph locale (e.g. `en_US`, `tr_TR`). The UI text in the components is English; mention this if they pick another language.
+- **Language:** the HTML `lang` (e.g. `en`, `tr`) and Open Graph locale (e.g. `en_US`, `tr_TR`). The fixed UI text is English; if they pick another language, offer to translate it. It lives in:
+  - `app/page.tsx`: "See my work", "Latest Articles", "View all →", "Read more"
+  - `app/blog/page.tsx` and `app/work/page.tsx`: the "Blog" and "My Work" headings, "← Back to home", page titles in `metadata`
+  - `app/blog/[slug]/page.tsx` and `app/work/[slug]/page.tsx`: "← Back to blog", "← Back to work"
+  - `app/blog/BlogClient.tsx`, `app/work/WorkClient.tsx`, `app/work/ProjectMeta.tsx`: list and pagination labels
+  - `app/components/SourceLink.tsx` ("Source"), `app/components/ThemeToggle.tsx` and `app/components/SocialIcon.tsx` (accessibility labels)
 - **Favicon** (optional): different letters, background and text colours.
 - **Source button:** the small "Source" button in the bottom-right corner of the home page. Options: point it at their own repo, keep it pointing at the original template (`https://github.com/YusufSina/yusufsina.com`) as a credit, or hide it (empty string).
 - **Starting content:** do they want to write a first post and add their first project now, or start with one placeholder of each?
@@ -33,19 +40,19 @@ Ask for:
 - `url` (no trailing slash), `name`, `description`, `bio`, `lang`, `locale`
 - `twitterHandle` (with `@`, or `""`), `socials`, `email`
 - `icon` (`text` only if they chose other letters), `sourceUrl`
-- `blog.description` and `work.description`: one line each in the user's voice
+- `blog.description` and `work.description`: one line each in the user's voice. They show under the Blog and Work headings and are those pages' meta descriptions.
 
 ## 3. Replace the photo
 
-- Copy their photo to `public/images/` with a descriptive file name, and set `avatar` to `/images/<file>`.
-- Delete `public/images/yusufsinayildiz.jpg`.
+- Copy their photo to `public/images/` with a descriptive file name, and set `avatar` to `/images/<file>`. It is also the default link preview image, so use JPG or PNG.
+- Delete the previous owner's photo (the old `avatar` path).
 
 ## 4. Remove the original content
 
 Everything below belongs to the original owner and is not covered by the MIT license, so it must go:
 
 - all files in `app/blog/posts/` and `app/work/projects/`
-- the image folders used by them: `public/images/blog/`, `public/images/conquerer/`, `public/images/meclisx/`, `public/images/pas/`, `public/images/xows/`
+- the images those files use: every folder under `public/images/` that is referenced from them (`grep -rho "/images/[^/)]*" app/blog/posts app/work/projects | sort -u` lists them). Keep the new avatar.
 
 Check with `git status` that nothing else was deleted. Then add the starting content from step 1 using the `new-post` and `new-project` skills. The build works with empty folders too (a placeholder 404 page is generated), but the Blog and Work pages will look empty.
 
@@ -54,6 +61,7 @@ Check with `git status` that nothing else was deleted. Then add the starting con
 - `LICENSE`: change the copyright line to the user's name and the current year, and rewrite the "Content is not covered" section for their own content (or remove it if they want their content MIT too; ask).
 - `readme.md`: rewrite the title and first paragraph for their site. Keep the Development, Content and Deployment sections. Keep or drop the "Make it yours" section depending on whether they want their copy to be a template too.
 - `package.json`: set `name` to a slug of their domain (e.g. `ada-dev`), then run `npm install` so `package-lock.json` picks up the new name.
+- **This skill:** ask whether their copy should stay a template for others. If not, delete `.claude/skills/setup-site/` (the `new-post` and `new-project` skills stay). If yes, keep it: it refers to "the current owner" and reads everything from `site.config.ts`, so it works for the next person too.
 
 ## 6. Hosting
 
@@ -75,9 +83,9 @@ Until `FTP_SERVER` is set, the deploy job is skipped with a notice, so pushes do
 1. `npm install` if `node_modules` is missing, then `npm run build`. It must pass.
 2. Look for leftovers of the original owner:
    ```bash
-   grep -rniI "yusuf\|yildiz\|0xyusufsina" --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=out --exclude-dir=.git .
+   grep -rniIF -e "<old name>" -e "<old domain>" -e "<old handle>" -e "<old email>" --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=out --exclude-dir=.git .
    ```
-   The only hits left should be the ones the user chose to keep (the template credit in `sourceUrl`, and a credit line in the README if they want one) and the files in `.claude/skills/`. Fix anything else.
+   using the values you noted at the start (for a multi-word name, also try the last name alone). The only hits left should be the ones the user chose to keep (the template credit in `sourceUrl`, and a credit line in the README if they want one) and the files in `.claude/skills/`. Fix anything else.
 3. Offer `npm run dev` so they can look at http://localhost:3000.
 
 ## 8. Wrap up

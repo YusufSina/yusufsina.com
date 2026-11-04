@@ -12,7 +12,7 @@ Posts are Markdown files in `app/blog/posts/`. Each file becomes a page at `/blo
 Ask for what is missing:
 
 - **Title**
-- **The content:** the finished text, notes to turn into a post, or a topic to draft from. When you draft, write in the user's voice (read one or two existing posts first if there are any), and never invent facts, numbers or experiences: ask, or leave a clearly marked `TODO`.
+- **The content:** the finished text, notes to turn into a post, or a topic to draft from. When you draft, write in the user's voice: read one or two existing posts first, or, if there are none yet, the `bio` and `description` in `site.config.ts`. Never invent facts, numbers or experiences: ask, or leave a clearly marked `TODO`.
 - **Date:** default to today.
 - **Images** (optional): file paths, plus a short description of each for its alt text.
 
@@ -44,8 +44,8 @@ First paragraph...
 ## 3. Images
 
 - Copy them to `public/images/blog/<slug>/` and reference them as `![Alt text](/images/blog/<slug>/<file>)`.
-- The first image in the post is used as its link preview image; without one, the site's profile photo is used.
-- Keep files reasonably small (under ~500 KB; SVG for diagrams).
+- The first image in the post is used as its link preview image on X, LinkedIn and others; without one, the site's profile photo is used. Those sites don't show SVG previews, so make the first image a JPG or PNG. SVG is fine for diagrams further down.
+- Keep files reasonably small (under ~500 KB).
 
 ## 4. Check
 

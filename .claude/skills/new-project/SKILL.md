@@ -15,7 +15,7 @@ Ask for what is missing. Only `title`, `excerpt` and some content are required; 
 - **Year**, the user's **role** (e.g. "Founder & developer"), **status** (e.g. "Live", "Archived", "Pilot")
 - **Stack:** the main technologies
 - **Link** to the live project (optional)
-- **The story:** what it is, the problem, what they built, what they learned. Turn notes into a short case study in the user's voice. Read one or two existing projects first, if there are any, to match their tone and section structure. Never invent features, numbers or results: ask, or leave a clearly marked `TODO`.
+- **The story:** what it is, the problem, what they built, what they learned. Turn notes into a short case study in the user's voice. Read one or two existing projects first to match their tone and section structure; if there are none yet, take the tone from `bio` and `description` in `site.config.ts`. Never invent features, numbers or results: ask, or leave a clearly marked `TODO`.
 - **Images:** screenshots or a header image, with a short description of each.
 
 ## 2. Write the file
@@ -53,7 +53,8 @@ link: "https://example.com"
 ## 3. Images
 
 - Copy them to `public/images/<slug>/` and reference them as `![Alt text](/images/<slug>/<file>)`.
-- The first image becomes the project's card cover and link preview image, so put the best one first.
+- The first image becomes the project's card cover and link preview image, so put the best one first. Use JPG or PNG for it: X, LinkedIn and others don't show SVG previews.
+- To use a cover that doesn't appear in the text, set `cover: "/images/<slug>/cover.jpg"` in the front matter instead; it takes priority over the first image for both the card and the link preview.
 - Keep files reasonably small (under ~500 KB each).
 
 ## 4. Check
