@@ -5,31 +5,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:static": "node patch-nextjs-buildid.js && next build",
-    "export": "next build",
-    "preview": "npx serve out",
-    "lint": "next lint",
-    "postinstall": "node patch-nextjs-buildid.js"
+    "preview": "npx serve out"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "13.5.6",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "next": "^16.4.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
-    "@types/node": "20.19.27",
-    "@types/react": "18.3.27",
-    "@types/react-dom": "^18.3.0",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.19",
-    "cross-env": "^7.0.3",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "typescript": "5.9.3"
+    "typescript": "^5.9.3"
   },
-  "optionalDependencies": {
-    "@types/gray-matter": "^4.0.3"
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

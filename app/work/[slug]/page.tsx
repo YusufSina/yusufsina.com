@@ -2,19 +2,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllProjects, getProjectBySlug } from "../getProjects";
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const projects = await getAllProjects();
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
-export default async function ProjectPage({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const project = await getProjectBySlug(slug);
 
   if (!project) {
