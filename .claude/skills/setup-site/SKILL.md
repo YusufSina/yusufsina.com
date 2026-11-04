@@ -51,8 +51,8 @@ Ask for:
 
 Everything below belongs to the original owner and is not covered by the MIT license, so it must go:
 
-- all files in `app/blog/posts/` and `app/work/projects/`
-- the images those files use: every folder under `public/images/` that is referenced from them (`grep -rho "/images/[^/)]*" app/blog/posts app/work/projects | sort -u` lists them). Keep the new avatar.
+- the images the posts and projects use. List them first, while the Markdown files still exist: `grep -rho "/images/[^/)]*" app/blog/posts app/work/projects | sort -u`. Delete those folders under `public/images/`, keeping the new avatar.
+- then all files in `app/blog/posts/` and `app/work/projects/`
 
 Check with `git status` that nothing else was deleted. Then add the starting content from step 1 using the `new-post` and `new-project` skills. The build works with empty folders too (a placeholder 404 page is generated), but the Blog and Work pages will look empty.
 
@@ -85,7 +85,7 @@ Until `FTP_SERVER` is set, the deploy job is skipped with a notice, so pushes do
    ```bash
    grep -rniIF -e "<old name>" -e "<old domain>" -e "<old handle>" -e "<old email>" --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=out --exclude-dir=.git .
    ```
-   using the values you noted at the start (for a multi-word name, also try the last name alone). The only hits left should be the ones the user chose to keep (the template credit in `sourceUrl`, and a credit line in the README if they want one) and the files in `.claude/skills/`. Fix anything else.
+   using the values you noted at the start (for a multi-word name, also try the first and last name on their own). The only hits left should be the ones the user chose to keep (the template credit in `sourceUrl`, and a credit line in the README if they want one) and the files in `.claude/skills/`. Fix anything else.
 3. Offer `npm run dev` so they can look at http://localhost:3000.
 
 ## 8. Wrap up
