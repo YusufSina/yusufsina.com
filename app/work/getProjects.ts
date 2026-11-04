@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
-import { EMPTY_SLUG, firstImage, isMissing } from '@/lib/site';
+import { EMPTY_SLUG, embedYouTube, firstImage, isMissing } from '@/lib/site';
 
 export interface Project {
   id: number;
@@ -111,7 +111,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       .use(remarkHtml)
       .process(content);
     
-    const contentHtml = processedContent.toString();
+    const contentHtml = embedYouTube(processedContent.toString());
 
     return {
       id: data.id,

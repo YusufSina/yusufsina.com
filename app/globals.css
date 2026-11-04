@@ -93,3 +93,12 @@ body {
   @apply bg-gray-100 dark:bg-gray-800 font-bold;
 }
 
+
+.markdown-content .video-embed {
+  @apply relative w-full my-4 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800;
+  aspect-ratio: 16 / 9;
+}
+
+.markdown-content .video-embed iframe {
+  @apply absolute inset-0 h-full w-full border-0;
+}
