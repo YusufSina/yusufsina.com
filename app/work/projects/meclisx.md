@@ -27,6 +27,8 @@ Most of these communities run on scattered WhatsApp groups and Excel lists. Mecl
 
 ![MeclisX mobile app: "Şubendeki etkinlikler ve üyeler tek uygulamada" (Your branch's events and members in one app)](/images/meclisx/app.jpg)
 
+https://youtu.be/kRcfkZ_hEvU
+
 ## For branch managers: the web panel
 
 Branch managers use a web panel to manage members, groups, events and tasks, and follow participation through reports. That gives the management team visibility into how engaged the community really is, without chasing replies across chat groups and spreadsheets.

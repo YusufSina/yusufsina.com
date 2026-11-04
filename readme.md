@@ -40,6 +40,7 @@ The favicon is generated at build time from the initials of `name` (`Ada Lovelac
 - **Blog posts:** add a Markdown file to `app/blog/posts/`.
 - **Projects:** add a Markdown file to `app/work/projects/`.
 - **Images:** put them in `public/images/` and reference them as `/images/...`.
+- **YouTube videos:** put the video link (`https://youtu.be/...` or `https://www.youtube.com/watch?v=...`) on a line of its own. It is shown as an embedded player.
 
 Each file starts with front matter:
 

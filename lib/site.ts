@@ -52,3 +52,27 @@ export function firstImage(markdown?: string): string | undefined {
   const match = markdown?.match(/!\[[^\]]*\]\(([^)\s]+)/);
   return match?.[1];
 }
+
+/**
+ * Turn a YouTube link that stands alone on its own line in Markdown into an
+ * embedded player (youtube-nocookie.com, so no tracking cookies until play).
+ * Works on the HTML from remark-html, where such a line becomes
+ * `<p>https://youtu.be/ID</p>` or `<p><a href="…">…</a></p>`.
+ */
+export function embedYouTube(html: string): string {
+  const url =
+    String.raw`https?://(?:www\.|m\.)?(?:youtu\.be/|youtube\.com/(?:watch\?v=|shorts/|embed/))([\w-]{11})[^\s<"]*`;
+  const pattern = new RegExp(
+    String.raw`<p>(?:<a href="${url}">[^<]*</a>|${url})</p>`,
+    "g"
+  );
+  return html.replace(pattern, (_match, linkId?: string, bareId?: string) => {
+    const id = linkId ?? bareId;
+    return (
+      `<div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/${id}" ` +
+      `title="YouTube video" loading="lazy" ` +
+      `allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ` +
+      `referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
+    );
+  });
+}

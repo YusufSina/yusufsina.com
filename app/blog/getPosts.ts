@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
-import { EMPTY_SLUG, isMissing } from '@/lib/site';
+import { EMPTY_SLUG, embedYouTube, isMissing } from '@/lib/site';
 
 export interface BlogPost {
   id: number;
@@ -88,7 +88,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       .use(remarkHtml)
       .process(content);
     
-    const contentHtml = processedContent.toString();
+    const contentHtml = embedYouTube(processedContent.toString());
 
     return {
       id: data.id,
