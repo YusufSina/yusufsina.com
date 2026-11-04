@@ -1,46 +1,49 @@
-# Portfolio Website
+# yusufsina.com
 
-A minimal Next.js portfolio website with a clean, minimalist design.
+Personal website, portfolio and blog of Yusuf Sina Yildiz, built with Next.js (App Router) and Tailwind CSS and published as a fully static site.
 
-## Features
+## Development
 
-- **Home Page**: Profile section with social links (X, LinkedIn, GitHub)
-- **Work Section**: Showcase your projects
-- **Blog Section**: Write and share articles
+Requires Node.js 20.9 or newer.
 
-## Getting Started
-
-1. Install dependencies:
 ```bash
 npm install
+npm run dev       # http://localhost:3000
+npm run build     # static export to ./out
+npm run preview   # serve ./out locally
 ```
 
-2. Update your social media links in `app/page.tsx`:
-   - Replace `https://twitter.com/yourusername` with your X/Twitter profile
-   - Replace `https://linkedin.com/in/yourusername` with your LinkedIn profile
-   - Replace `https://github.com/yourusername` with your GitHub profile
+## Content
 
-3. Add your profile picture:
-   - Replace the placeholder in `app/page.tsx` with your actual profile image
-   - You can use Next.js Image component or add your image to the `public` folder
+- **Blog posts:** add a Markdown file to `app/blog/posts/`.
+- **Projects:** add a Markdown file to `app/work/projects/`.
+- **Images:** put them in `public/images/` and reference them as `/images/...`.
 
-4. Run the development server:
-```bash
-npm run dev
+Each file starts with front matter:
+
+```yaml
+---
+id: 3
+title: "Post title"
+date: "January 2, 2026"   # any format JavaScript's Date can parse
+excerpt: "One or two sentences. Used on list pages, in search results, link previews and RSS."
+slug: "post-title"         # optional, defaults to the file name
+link: "example.com"        # projects only, optional
+---
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+The first image in a project or post is used as its social preview image.
 
-## Customization
+## SEO and feeds
 
-- **Projects**: Edit the `projects` array in `app/work/page.tsx` to add your projects
-- **Blog Posts**: Edit the `posts` array in `app/blog/page.tsx` to add your blog posts
-- **Styling**: Modify `tailwind.config.ts` to adjust colors and theme
-- **Content**: Update the text content in `app/page.tsx` to match your personal information
+Generated at build time:
 
-## Build for Production
+- Per-page titles, descriptions, canonical URLs, Open Graph and Twitter card tags
+- `/sitemap.xml`, `/robots.txt`
+- `/rss.xml` blog feed
 
-```bash
-npm run build
-npm start
-```
+Site-wide values (URL, name, description, X handle) live in `lib/site.ts`.
+
+## Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md).
