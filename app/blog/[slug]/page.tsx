@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { DEFAULT_OG_IMAGE, firstImage, toDate } from "@/lib/site";
 import { getAllPosts, getPostBySlug } from "../getPosts";
 
 // Generate static params for all blog posts
@@ -8,6 +10,39 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return posts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  if (!post) return {};
+
+  const url = `/blog/${post.slug}/`;
+  const image = firstImage(post.content) ?? DEFAULT_OG_IMAGE;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      url,
+      publishedTime: toDate(post.date)?.toISOString(),
+      images: [{ url: image, alt: post.title }],
+    },
+    twitter: {
+      card: image === DEFAULT_OG_IMAGE ? "summary" : "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [image],
+    },
+  };
 }
 
 export default async function BlogPost({ params,
