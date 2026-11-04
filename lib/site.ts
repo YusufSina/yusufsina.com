@@ -29,6 +29,18 @@ export function mailtoHref(): string | undefined {
   return `mailto:${address}${query ? `?${query}` : ""}`;
 }
 
+/**
+ * Slug of the placeholder page rendered when a section has no Markdown files yet.
+ * A static export needs at least one page per dynamic route; the placeholder is
+ * removed from out/ after the build (see "postbuild" in package.json).
+ */
+export const EMPTY_SLUG = "_empty";
+
+/** True for "file or folder doesn't exist", which just means there is no content yet. */
+export function isMissing(error: unknown): boolean {
+  return (error as NodeJS.ErrnoException)?.code === "ENOENT";
+}
+
 /** Parse post/project dates ("January 2, 2026" or "2026-01-01") safely. */
 export function toDate(value: string): Date | undefined {
   const d = new Date(value);

@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DEFAULT_OG_IMAGE, firstImage, toDate } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, EMPTY_SLUG, firstImage, toDate } from "@/lib/site";
 import { getAllPosts, getPostBySlug } from "../getPosts";
 
 // Generate static params for all blog posts
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = await getAllPosts();
+  // A static export needs at least one page per dynamic route. With no posts yet,
+  // render a single placeholder instead of failing the build. It is deleted from out/
+  // after the build ("postbuild" in package.json).
+  if (posts.length === 0) return [{ slug: EMPTY_SLUG }];
   return posts.map((post) => ({
     slug: post.slug,
   }));

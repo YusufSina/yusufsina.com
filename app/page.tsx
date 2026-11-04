@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "./blog/getPosts";
 import SocialIcon, { SOCIAL_LABELS } from "./components/SocialIcon";
+import SourceLink from "./components/SourceLink";
 import { siteConfig, mailtoHref } from "@/lib/site";
 
 export default async function Home() {
@@ -142,6 +143,7 @@ export default async function Home() {
           </div>
         )}
       </div>
+      <SourceLink />
     </main>
   );
 }

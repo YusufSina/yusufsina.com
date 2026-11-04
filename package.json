@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node -e \"for (const d of ['blog', 'work']) require('fs').rmSync('out/' + d + '/_empty', { recursive: true, force: true })\"",
     "preview": "npx serve out"
   },
   "dependencies": {

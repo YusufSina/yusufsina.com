@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
-import { firstImage } from '@/lib/site';
+import { EMPTY_SLUG, firstImage, isMissing } from '@/lib/site';
 
 export interface Project {
   id: number;
@@ -88,12 +88,14 @@ export async function getAllProjects(): Promise<Project[]> {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
   } catch (error) {
-    console.error('Error reading projects:', error);
+    // No projects folder yet (git doesn't keep empty folders): nothing to list.
+    if (!isMissing(error)) console.error('Error reading projects:', error);
     return [];
   }
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  if (slug === EMPTY_SLUG) return null;
   try {
     const filePath = join(projectsDirectory, `${slug}.md`);
     const fileContents = await readFile(filePath, 'utf8');
@@ -122,7 +124,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       contentHtml: contentHtml,
     } as Project;
   } catch (error) {
-    console.error('Error finding project:', error);
+    if (!isMissing(error)) console.error('Error finding project:', error);
     return null;
   }
 }

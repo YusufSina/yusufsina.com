@@ -15,3 +15,8 @@ updates:
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # Node types follow the Node version the site builds on (22 in deploy.yml),
+      # so only take minor/patch updates. Bump this together with node-version.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]

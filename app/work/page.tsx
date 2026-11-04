@@ -30,7 +30,7 @@ export default async function Work() {
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
             My Work
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">Projects I've worked on</p>
+          <p className="text-gray-600 dark:text-gray-400">{siteConfig.work.description}</p>
         </div>
 
         <WorkClient initialProjects={allProjects} projectsPerPage={PROJECTS_PER_PAGE} />

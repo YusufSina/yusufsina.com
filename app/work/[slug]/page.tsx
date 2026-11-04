@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DEFAULT_OG_IMAGE, firstImage, toDate } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, EMPTY_SLUG, toDate } from "@/lib/site";
 import { getAllProjects, getProjectBySlug } from "../getProjects";
 import ProjectMeta from "../ProjectMeta";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const projects = await getAllProjects();
+  // A static export needs at least one page per dynamic route. With no projects yet,
+  // render a single placeholder instead of failing the build. It is deleted from out/
+  // after the build ("postbuild" in package.json).
+  if (projects.length === 0) return [{ slug: EMPTY_SLUG }];
   return projects.map((project) => ({
     slug: project.slug,
   }));
@@ -23,7 +27,8 @@ export async function generateMetadata({
   if (!project) return {};
 
   const url = `/work/${project.slug}/`;
-  const image = firstImage(project.content) ?? DEFAULT_OG_IMAGE;
+  // `cover` from the front matter, else the first image in the text.
+  const image = project.cover ?? DEFAULT_OG_IMAGE;
   return {
     title: project.title,
     description: project.excerpt,

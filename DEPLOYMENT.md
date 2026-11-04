@@ -17,7 +17,7 @@ If `FTP_SERVER` is not set the deploy job is skipped with a notice, so a fresh c
 
 | Name | Type | Value |
 |---|---|---|
-| `FTP_SERVER` | Secret | FTP host, e.g. `ftp.example.com` |
+| `FTP_SERVER` | Secret | FTP host name, no `ftp://` or port. Use the server name the host's TLS certificate is issued for (cPanel: *FTP Accounts → Configure FTP Client*), e.g. `server123.hosting-provider.com`; `ftp.<your-domain>` often fails FTPS. |
 | `FTP_USERNAME` | Secret | FTP account user name |
 | `FTP_PASSWORD` | Secret | FTP account password |
 | `FTP_SERVER_DIR` | Variable (optional) | Folder to upload into, ending with `/`. Defaults to the FTP account's home folder (`./`). |
