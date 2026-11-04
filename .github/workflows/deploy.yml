@@ -14,13 +14,17 @@ concurrency:
 permissions:
   contents: read
 
+# Third-party actions are pinned to a full commit SHA, so a moved tag can't change
+# what runs here. Dependabot (.github/dependabot.yml) proposes updates.
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: npm
@@ -28,28 +32,41 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: site
           path: out/
           retention-days: 7
 
   # Uploads only on pushes to main (and manual runs); pull requests just build.
+  # Secrets live in the "production" environment, which only main may deploy to.
   deploy:
     needs: build
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: https://yusufsina.com
+    environment: production
     steps:
-      - uses: actions/download-artifact@v4
+      # A fresh copy of this template has no FTP secrets yet: skip instead of failing.
+      - name: Check FTP settings
+        id: ftp
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          if [ -n "$FTP_SERVER" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::FTP_SERVER is not set, skipping deploy. See DEPLOYMENT.md."
+          fi
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        if: steps.ftp.outputs.configured == 'true'
         with:
           name: site
           path: out/
 
       - name: Upload to server over FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        if: steps.ftp.outputs.configured == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}

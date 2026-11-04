@@ -1,5 +1,5 @@
 import { getAllPosts } from "../blog/getPosts";
-import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, toDate } from "@/lib/site";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, siteConfig, toDate } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -37,7 +37,7 @@ export async function GET() {
     <title>${escapeXml(SITE_NAME)}</title>
     <link>${SITE_URL}/blog/</link>
     <description>${escapeXml(SITE_DESCRIPTION)}</description>
-    <language>en</language>${
+    <language>${siteConfig.lang}</language>${
       lastBuild ? `\n    <lastBuildDate>${lastBuild.toUTCString()}</lastBuildDate>` : ""
     }
     <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
