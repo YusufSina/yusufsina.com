@@ -31,6 +31,7 @@ Ask for:
 - **Favicon** (optional): different letters, background and text colours.
 - **Source button:** the small "Source" button in the bottom-right corner of the home page. Options: point it at their own repo, keep it pointing at the original template (`https://github.com/YusufSina/yusufsina.com`) as a credit, or hide it (empty string).
 - **Starting content:** do they want to write a first post and add their first project now, or start with one placeholder of each?
+- **Analytics** (optional): visitor statistics with GoatCounter, Cloudflare Web Analytics, Umami, Plausible or Google Analytics (see "Analytics" in `readme.md`), or none. If they want one, ask for the ID from their account.
 - **Hosting:** cPanel/FTP (what the repo deploys to now), or another static host (Netlify, Cloudflare Pages, Vercel, GitHub Pages).
 
 ## 2. Fill in `site.config.ts`
@@ -40,6 +41,7 @@ Ask for:
 - `url` (no trailing slash), `name`, `description`, `bio`, `lang`, `locale`
 - `twitterHandle` (with `@`, or `""`), `socials`, `email`
 - `icon` (`text` only if they chose other letters), `sourceUrl`
+- `analytics`: their provider and ID, or `{ provider: "none" }`. Never keep the original owner's value, or the user's visitors are counted on someone else's dashboard.
 - `blog.description` and `work.description`: one line each in the user's voice. They show under the Blog and Work headings and are those pages' meta descriptions.
 
 ## 3. Replace the photo
