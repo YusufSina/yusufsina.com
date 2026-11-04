@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DEFAULT_OG_IMAGE } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, siteConfig } from "@/lib/site";
 import { getAllProjects } from "./getProjects";
 import WorkClient from "./WorkClient";
 
@@ -8,9 +8,9 @@ const PROJECTS_PER_PAGE = 5;
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Projects I've built and worked on.",
+  description: siteConfig.work.description,
   alternates: { canonical: "/work/" },
-  openGraph: { title: "Work", description: "Projects I've built and worked on.", url: "/work/", images: [DEFAULT_OG_IMAGE] },
+  openGraph: { title: "Work", description: siteConfig.work.description, url: "/work/", images: [DEFAULT_OG_IMAGE] },
 };
 
 export default async function Work() {
