@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+out.zip
+*.zip
+.env*
+!.env.example
+.DS_Store
+*.tsbuildinfo
+npm-debug.log*
