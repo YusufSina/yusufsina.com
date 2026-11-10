@@ -52,13 +52,26 @@ export const metadata: Metadata = {
   },
 };
 
+const THEME_SCRIPT = `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={siteConfig.lang} className={poppins.variable}>
+    // suppressHydrationWarning: the script below adds the "dark" class before
+    // React loads, so the class differs from the pre-rendered HTML on purpose.
+    <html lang={siteConfig.lang} className={poppins.variable} suppressHydrationWarning>
+      <head>
+        {/*
+          Runs before the first paint so dark-mode visitors don't see a white
+          page until the JavaScript bundle loads (the HTML is pre-rendered
+          without the "dark" class). Same rule as ThemeToggle: a saved choice
+          wins, otherwise follow the system setting.
+        */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className={poppins.className}>
         <ThemeToggle />
         {children}
