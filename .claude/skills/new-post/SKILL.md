@@ -44,7 +44,8 @@ First paragraph...
 ## 3. Images
 
 - Copy them to `public/images/blog/<slug>/` and reference them as `![Alt text](/images/blog/<slug>/<file>)`.
-- The first image in the post is used as its link preview image on X, LinkedIn and others; without one, the site's profile photo is used. Those sites don't show SVG previews, so make the first image a JPG or PNG. SVG is fine for diagrams further down.
+- The first image in the post is its cover: the thumbnail in the home page's Latest Articles list and the link preview image on X, LinkedIn and others. Without one, the list shows the title's leading emoji on a plain tile and the link preview uses the site's profile photo. Those sites don't show SVG previews, so make the first image a JPG or PNG. SVG is fine for diagrams further down.
+- To use a cover that doesn't appear in the text, set `cover: "/images/blog/<slug>/cover.jpg"` in the front matter instead; it takes priority over the first image for both the list and the link preview.
 - Keep files reasonably small (under ~500 KB).
 
 ## 4. Check
