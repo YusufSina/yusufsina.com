@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getAllPosts } from "./blog/getPosts";
 import SocialIcon, { SOCIAL_LABELS } from "./components/SocialIcon";
 import SourceLink from "./components/SourceLink";
+import PostCover from "./components/PostCover";
 import { siteConfig, mailtoHref } from "@/lib/site";
 
 export default async function Home() {
@@ -108,34 +109,42 @@ export default async function Home() {
                 {latestPosts.map((post) => (
                   <article
                     key={post.id}
-                    className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0"
+                    className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0 flex flex-col sm:flex-row gap-5"
                   >
-                    <Link href={`/blog/${post.slug}`}>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 hover:text-accent transition-colors">
-                        {post.title}
-                      </h3>
-                    </Link>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-3">{post.excerpt}</p>
-                    <Link
+                    <PostCover
                       href={`/blog/${post.slug}`}
-                      className="text-accent hover:underline inline-flex items-center gap-2 text-sm"
-                    >
-                      Read more
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                      title={post.title}
+                      cover={post.cover}
+                      className="sm:w-44"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <Link href={`/blog/${post.slug}`}>
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 hover:text-accent transition-colors">
+                          {post.title}
+                        </h3>
+                      </Link>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
+                      <p className="text-gray-600 dark:text-gray-300 mb-3">{post.excerpt}</p>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="text-accent hover:underline inline-flex items-center gap-2 text-sm"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </Link>
+                        Read more
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
                   </article>
                 ))}
               </div>

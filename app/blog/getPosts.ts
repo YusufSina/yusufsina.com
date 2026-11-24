@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import matter from 'gray-matter';
-import { EMPTY_SLUG, embedYouTube, isMissing } from '@/lib/site';
+import { EMPTY_SLUG, embedYouTube, firstImage, isMissing } from '@/lib/site';
 
 export interface BlogPost {
   id: number;
@@ -11,6 +11,8 @@ export interface BlogPost {
   slug: string;
   content?: string;
   contentHtml?: string;
+  /** List image: `cover` in the front matter, else the first image in the post. */
+  cover?: string;
 }
 
 interface MatterData {
@@ -19,6 +21,7 @@ interface MatterData {
   date: string;
   excerpt: string;
   slug?: string;
+  cover?: string;
   [key: string]: unknown;
 }
 
@@ -49,6 +52,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
             date: data.date,
             excerpt: data.excerpt,
             slug: data.slug || file.replace('.md', ''),
+            cover: data.cover || firstImage(content),
             content: content.trim(),
           } as BlogPost;
         } catch (error) {
@@ -96,6 +100,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       date: data.date,
       excerpt: data.excerpt,
       slug: data.slug || slug,
+      cover: data.cover || firstImage(content),
       content: content.trim(),
       contentHtml: contentHtml,
     } as BlogPost;

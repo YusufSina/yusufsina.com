@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DEFAULT_OG_IMAGE, EMPTY_SLUG, firstImage, toDate } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, EMPTY_SLUG, toDate } from "@/lib/site";
 import { getAllPosts, getPostBySlug } from "../getPosts";
 
 // Generate static params for all blog posts
@@ -27,7 +27,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = `/blog/${post.slug}/`;
-  const image = firstImage(post.content) ?? DEFAULT_OG_IMAGE;
+  const image = post.cover ?? DEFAULT_OG_IMAGE;
   return {
     title: post.title,
     description: post.excerpt,
